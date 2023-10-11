@@ -16,3 +16,19 @@ img {
   display: block;
   max-width: 100%;
 }
+
+button[data-start] {
+  background-color: yellow;
+}
+
+button[data-start]:hover {
+  background-color: blue;
+}
+
+button[data-stop] {
+  background-color: yellow;
+}
+
+button[data-stop]:hover {
+  background-color: blue;
+}
