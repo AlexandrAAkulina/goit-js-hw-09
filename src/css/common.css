@@ -18,17 +18,30 @@ img {
 }
 
 button[data-start] {
-  background-color: yellow;
+  background-color: rgb(244, 247, 248);
 }
 
 button[data-start]:hover {
-  background-color: blue;
+  background-color: rgb(135, 135, 143);
 }
 
 button[data-stop] {
-  background-color: yellow;
+  background-color: rgb(244, 247, 248);
 }
 
 button[data-stop]:hover {
-  background-color: blue;
+  background-color: rgb(135, 135, 143);
+}
+
+.timer {
+  display: flex;
+  flex-direction: row;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 65px;
 }
