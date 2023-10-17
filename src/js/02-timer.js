@@ -3,12 +3,6 @@ import "flatpickr/dist/flatpickr.min.css";
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 import '../css/common.css';
 
-// const buttonStartEl = document.querySelector('[data-start]');
-// const days = document.querySelector('[data-days]');
-// const hours = document.querySelector('[data-hours]');
-// const minutes = document.querySelector('[data-minutes]');
-// const seconds = document.querySelector('[data-seconds]')
-
 const refs = {
     buttonStartEl: document.querySelector('[data-start]'),
     days: document.querySelector('[data-days]'),
