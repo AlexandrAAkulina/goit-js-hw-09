@@ -1,13 +1,15 @@
 import { Notify } from 'notiflix/build/notiflix-notify-aio';
 
-const selectors = {
-  formEl: document.querySelector('.form'),
-  delay: document.querySelector('[name=delay]'),
-  step: document.querySelector('[name="step"]'),
-  amount: document.querySelector('[name="amount"]')
-}
+const formEl = document.querySelector('.form');
 
-selectors.formEl.addEventListener('submit', onFormSubmit);
+// const selectors = {
+//   formEl: document.querySelector('.form'),
+//   delay: document.querySelector('[name=delay]'),
+//   step: document.querySelector('[name="step"]'),
+//   amount: document.querySelector('[name="amount"]')
+// }
+
+formEl.addEventListener('submit', onFormSubmit);
 
 function createPromise(position, delay) {
   return new Promise((res, rej) => {
@@ -25,9 +27,9 @@ function createPromise(position, delay) {
 function onFormSubmit(evt) {
   evt.preventDefault();
 
-  let delayNum = Number(selectors.delay.value);
-  let amountNum = Number(selectors.amount.value);
-  let stepNum = Number(selectors.step.value);
+  let delayNum = Number(oneTarget.elements.delay);
+  let amountNum = Number(oneTarget.elements.step);
+  let stepNum = Number(oneTarget.elements.amount);
 
   for (let i = 1; i <= amountNum; i += 1) {
     createPromise(i, delayNum)

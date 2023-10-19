@@ -11,8 +11,10 @@ const refs = {
     seconds: document.querySelector('[data-seconds]')
 };
 
-let selectedTime = null;
+const currentDate = Date.now();
+let selectedDate = Date.now();
 let idInterval = null;
+
 
 refs.buttonStartEl.addEventListener('click', onCountTimeClick);
 
@@ -24,14 +26,17 @@ const options = {
   defaultDate: new Date(),
   minuteIncrement: 1,
     onClose(selectedDates) {
-    selectedTime = selectedDates[0].getTime();
-    if (selectedTime < new Date()) {
-        Notify.failure('Please choose a date in the future')
-        return;
+        
+        if (selectedDates[0] < currentDate)
+        {
+            Notify.failure('Please choose a date in the future')
+            refs.buttonStartEl.disabled = true;   
+        } else {
+            refs.buttonStartEl.disabled = false;
+            selectedDate = selectedDates[0];
         }
-        refs.buttonStartEl.disabled = false;
-    // console.log(selectedDates[0]);
-  },
+      },
+    
 };
 
 flatpickr("#datetime-picker", options);
@@ -40,22 +45,22 @@ let calculatedTimeObj = {};
 
 function onCountTimeClick() {
     idInterval = setInterval(() => {
-        const result = selectedTime - new Date().getTime();
+        const result = selectedDate - Date.now();
         calculatedTimeObj = convertMs(result);
         if (result <= 0) {
             clearTimeout(idInterval);
             return;
         }
-        // calculatedTimeObj = convertMs(result);
+        
         clockView(calculatedTimeObj);
     }, 1000);
 }
 
 function clockView({days, hours, minutes, seconds}) {
-    refs.days.textContent = days;
-    refs.hours.textContent = hours;
-    refs.minutes.textContent = minutes;
-    refs.seconds.textContent = seconds;
+    refs.days.textContent = addLeadingZero(days);
+    refs.hours.textContent = addLeadingZero(hours);
+    refs.minutes.textContent = addLeadingZero(minutes);
+    refs.seconds.textContent = addLeadingZero(seconds);
 }
 
 function convertMs(ms) {

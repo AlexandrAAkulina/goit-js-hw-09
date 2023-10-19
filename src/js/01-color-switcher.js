@@ -8,22 +8,30 @@ let intervalId = null;
 startButtonEl.addEventListener('click', onStartButtonClick);
 stoptButtonEl.addEventListener('click', onStopButtonClick);
 
-function onStartButtonClick () {
-    startButtonEl.disable = true;
-    stoptButtonEl.disable = false;
+function onStartButtonClick() {
+    onButtonDisabled();
     intervalId = setInterval(() => {
         document.body.style.backgroundColor = getRandomHexColor();
     }, 1000)
 }
 
 function onStopButtonClick() {
-    stoptButtonEl.disable = true;
-    startButtonEl.disable = false;
     clearInterval(intervalId);
+    onButtonDisabled();
 }
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
+}
+
+function onButtonDisabled() {
+    if (!startButtonEl.disabled) {
+        startButtonEl.disabled = true; 
+        stoptButtonEl.disabled = false;
+    } else {
+        startButtonEl.disabled = false;
+        stoptButtonEl.disabled = true;
+    }
 }
 
 
