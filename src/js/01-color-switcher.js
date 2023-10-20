@@ -9,7 +9,7 @@ startButtonEl.addEventListener('click', onStartButtonClick);
 stoptButtonEl.addEventListener('click', onStopButtonClick);
 
 function onStartButtonClick() {
-    onButtonDisabled();
+    onButtonDisabled(true);
     intervalId = setInterval(() => {
         document.body.style.backgroundColor = getRandomHexColor();
     }, 1000)
@@ -17,22 +17,18 @@ function onStartButtonClick() {
 
 function onStopButtonClick() {
     clearInterval(intervalId);
-    onButtonDisabled();
+    onButtonDisabled(false);
 }
 
 function getRandomHexColor() {
   return `#${Math.floor(Math.random() * 16777215).toString(16).padStart(6, 0)}`;
 }
 
-function onButtonDisabled() {
-    if (!startButtonEl.disabled) {
-        startButtonEl.disabled = true; 
-        stoptButtonEl.disabled = false;
-    } else {
-        startButtonEl.disabled = false;
-        stoptButtonEl.disabled = true;
+function onButtonDisabled(disabled) {
+        startButtonEl.disabled = disabled; 
+        stoptButtonEl.disabled = !disabled;
     }
-}
+
 
 
 

@@ -28,8 +28,8 @@ function onFormSubmit(evt) {
   evt.preventDefault();
 
   let delayNum = Number(evt.currentTarget.elements.delay.value);
-  let amountNum = Number(evt.currentTarget.elements.step.value);
-  let stepNum = Number(evt.currentTarget.elements.amount.value);
+  let amountNum = Number(evt.currentTarget.elements.amount.value);
+  let stepNum = Number(evt.currentTarget.elements.step.value);
 
   for (let i = 1; i <= amountNum; i += 1) {
     createPromise(i, delayNum)
